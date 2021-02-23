@@ -1,11 +1,11 @@
 
 // récupération de l'id du produit
-let newId = location.search.substring(5);
-console.log(newId);
+// let newId = location.search.substring(5);
+var searchParams = new URLSearchParams(location.search);
+let newId = searchParams.get("_id");
 
 //modification de l'adresse d'appel à l'API
 let newUrl = `http://localhost:3000/api/cameras/${newId}`;
-console.log(newUrl);
 
 fetch(newUrl)
 .then(response => response.json())
@@ -22,7 +22,7 @@ fetch(newUrl)
     let selectionProduct = document.getElementById('product');
     selectionProduct.innerHTML +=
         `<div class="col-md-7">
-            <img src="${produit.imageUrl}" class"img-responsive img-thumbnail rounded" alt="Product Image" style="width: 100%">
+            <img src="${produit.imageUrl}" class="img-fluid img-thumbnail" alt="Product Image" >
         </div>
         <div class="col-md-5">
             <div class="card-body">

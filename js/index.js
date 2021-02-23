@@ -15,12 +15,12 @@ fetch(url)
         price = Intl.NumberFormat("fr-FR", {
         style: "currency",
         currency: "EUR",
-        minimumFractionDigits: 0
+        minimumFractionDigits: 2
         }).format(price / 100);
         // insertion de la card du produit
         card.innerHTML += 
-        `<div class="col-sm-12 col-md-6 col-lg-6 pb-3 ">
-                <div class="card border bg-light">
+        `<div class="col-sm-12 col-md-6 col-lg-6 pb-3  ">
+                <div class="card border bg-light shadow p-3 mb-5 bg-body rounded">
                     <div class="card-body">
                         <div class="row">
                             <img src="${produit.imageUrl}" class="card-img-top scale-on-hover" alt="${produit.name}">
