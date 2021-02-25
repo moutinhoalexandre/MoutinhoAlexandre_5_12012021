@@ -6,6 +6,7 @@ let newId = searchParams.get("_id");
 
 //modification de l'adresse d'appel à l'API
 let newUrl = `http://localhost:3000/api/cameras/${newId}`;
+let versionChoice;
 
 fetch(newUrl)
 .then(response => response.json())
@@ -34,22 +35,52 @@ fetch(newUrl)
                         <h5 class="card-title">${price}</h5>
                     </div>
                 </div>
-                <select class="form-select mb-3" aria-label="choisir la version"id="option">
-                    <option selected >Choisir la version</option>
+                <select id="option" class="form-select mb-3" aria-label="choisir la version" >
+                    <option selected value="choice">Choisir la version</option>
                 </select>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                 additional content. This content is a little bit longer.</p>
-                <a href="" class="btn btn-success">Ajouter au Panier</a>
+                <a href="" id="btnAjoutPanier" class="btn btn-success">Ajouter au Panier</a>
             </div>
         </div>`;
+    
     // insertion des versions du produit
     let versionChoice = document.getElementById("option");
-    produit = data;
+
     for (let lenses of produit.lenses){
         versionChoice.innerHTML +=
             `<option value="${lenses}">${lenses}</option>`;
     }
+    // let optionSelected = "choice";
+    // console.log(optionSelected);
+
+    // // test capture choix option
+    // versionChoice.addEventListener(`change`, (e) => {
+    // optionSelected = optionValue();
+    // console.log(optionValue());
+    // console.log(optionSelected);
+    // })
+
+    //     console.log(optionSelected);
+
+    let btnAjoutPanier = document.getElementById("btnAjoutPanier");
+    btnAjoutPanier.addEventListener("click", (e) => {
+        e.preventDefault();
+        let liste;
+        liste = document.getElementById("option");
+        console.log(liste.value)
+    })
+
+
+
+
+    
+
+    
+    
     
 }
-
 )
+
+
+
