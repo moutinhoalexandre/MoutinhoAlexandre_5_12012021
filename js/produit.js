@@ -37,7 +37,18 @@ fetch(newUrl)
                 additional content. This content is a little bit longer.</p>
                 <a href="" id="btnAjoutPanier" class="btn btn-success">Ajouter au Panier</a>
             </div>
-        </div>`;
+            <div class="toast show position-absolute top-50 start-50 translate-middle bg-danger" id="myToast" hidden>
+                <div id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex my-2">
+                        <div class="toast-body me-auto py-0 text-white" id="message">
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="toast" aria-label="Close" id="closeToast"></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        `;
     
     // insertion des versions du produit
     let versionChoice = document.getElementById("option");
@@ -63,6 +74,18 @@ fetch(newUrl)
         e.preventDefault();
         let liste;
         liste = document.getElementById("option");
+        if (liste.value == "choice") {
+            let toast = document.getElementById('myToast');
+            console.log(toast)
+            toast.toggleAttribute("hidden");
+            let messageToast = document.getElementById("message");
+            console.log(messageToast);
+            messageToast.innerHTML = `Veuillez choisir l'option`;
+            document.getElementById('closeToast').addEventListener('click', function () {
+                toast.setAttribute("hidden", "");
+            }
+            )
+        }
         console.log(liste.value)
     })
 
