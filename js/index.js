@@ -11,12 +11,7 @@ fetch(url)
         //recupère l'élément liste dans le HTML
         let card = document.getElementById('liste');
         //convertit le prix
-        let price = produit.price;
-        price = Intl.NumberFormat("fr-FR", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2
-        }).format(price / 100);
+        let price = convertPrice(produit.price);
         // insertion de la card du produit
         card.innerHTML += 
         `<div class="col-sm-12 col-md-6 col-lg-6 pb-3  ">

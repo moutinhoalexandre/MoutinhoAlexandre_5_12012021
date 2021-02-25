@@ -13,12 +13,7 @@ fetch(newUrl)
 .then((data) => {
     let produit = data;
     //convertit le prix
-        let price = produit.price;
-        price = Intl.NumberFormat("fr-FR", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 0
-        }).format(price / 100);
+    let price = convertPrice(produit.price);
     // insertion de la card du produit
     let selectionProduct = document.getElementById('product');
     selectionProduct.innerHTML +=
