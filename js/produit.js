@@ -35,6 +35,20 @@ fetch(newUrl)
                 </select>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                 additional content. This content is a little bit longer.</p>
+                <div class="row">
+                    <div class="col-5 col-sm-3 col-md-5 col-lg-4 col-xl-3 my-auto">
+                        <p>Quantité :</p>
+                    </div>
+                    <div class="col-4 col-sm-3 col-md-4 col-lg-3 ">
+                    <select id="quantity" class="form-select mb-3" aria-label="Quantité" >
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    </div>
+                </div>
                 <a href="" id="btnAjoutPanier" class="btn btn-success">Ajouter au Panier</a>
             </div>
             <div class="toast show position-absolute top-50 start-50 translate-middle bg-danger" id="myToast" hidden>
@@ -44,7 +58,6 @@ fetch(newUrl)
                         </div>
                         <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="toast" aria-label="Close" id="closeToast"></button>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -80,7 +93,7 @@ fetch(newUrl)
             toast.toggleAttribute("hidden");
             let messageToast = document.getElementById("message");
             console.log(messageToast);
-            messageToast.innerHTML = `Veuillez choisir l'option`;
+            messageToast.innerHTML = `Veuillez choisir la version`;
             document.getElementById('closeToast').addEventListener('click', function () {
                 toast.setAttribute("hidden", "");
             }

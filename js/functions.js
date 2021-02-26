@@ -3,7 +3,6 @@ let url = `http://localhost:3000/api/cameras`;
 
     
 // convertir le prix
-
 function convertPrice(productPrice) {
     let price = `${productPrice}`;
     price = Intl.NumberFormat("fr-FR", {
