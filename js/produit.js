@@ -33,8 +33,7 @@ fetch(newUrl)
                 <select id="option" class="form-select mb-3" aria-label="choisir la version" >
                     <option selected value="choice">Choisir la version</option>
                 </select>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.</p>
+                <p class="card-text">${produit.description}</p>
                 <div class="row">
                     <div class="col-5 col-sm-3 col-md-5 col-lg-4 col-xl-3 my-auto">
                         <p>Quantité :</p>
@@ -87,6 +86,9 @@ fetch(newUrl)
         e.preventDefault();
         let liste;
         liste = document.getElementById("option");
+        let quantity;
+        quantity = document.getElementById("quantity")
+
         if (liste.value == "choice") {
             let toast = document.getElementById('myToast');
             console.log(toast)
@@ -96,10 +98,15 @@ fetch(newUrl)
             messageToast.innerHTML = `Veuillez choisir la version`;
             document.getElementById('closeToast').addEventListener('click', function () {
                 toast.setAttribute("hidden", "");
-            }
-            )
+            })
+        } else {
+            let objetProduit = new product(newId, produit.name, produit.description, price, liste.value, quantity.value, produit.imageUrl);
+            let basket = JSON.parse(localStorage.getItem("camera")) || [];
+            basket.push(objetProduit);
+            localStorage.setItem("camera", JSON.stringify(basket));
+            console.log(`Vous avez choisi ${quantity.value} appareil avec l'option ${liste.value}`);
         }
-        console.log(liste.value)
+
     })
 
 
