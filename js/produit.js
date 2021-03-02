@@ -31,7 +31,6 @@ fetch(newUrl)
                     </div>
                 </div>
                 <select id="option" class="form-select mb-3" aria-label="choisir la version" >
-                    <option selected value="choice">Choisir la version</option>
                 </select>
                 <p class="card-text">${produit.description}</p>
                 <div class="row">
@@ -48,7 +47,7 @@ fetch(newUrl)
                     </select>
                     </div>
                 </div>
-                <a href="" id="btnAjoutPanier" class="btn btn-success">Ajouter au Panier</a>
+                <button id="btnAjoutPanier" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal" >Ajouter au Panier</button>
             </div>
             <div class="toast show position-absolute top-50 start-50 translate-middle bg-danger" id="myToast" hidden>
                 <div id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -69,17 +68,6 @@ fetch(newUrl)
         versionChoice.innerHTML +=
             `<option value="${lenses}">${lenses}</option>`;
     }
-    // let optionSelected = "choice";
-    // console.log(optionSelected);
-
-    // // test capture choix option
-    // versionChoice.addEventListener(`change`, (e) => {
-    // optionSelected = optionValue();
-    // console.log(optionValue());
-    // console.log(optionSelected);
-    // })
-
-    //     console.log(optionSelected);
 
     let btnAjoutPanier = document.getElementById("btnAjoutPanier");
     btnAjoutPanier.addEventListener("click", (e) => {
@@ -89,21 +77,12 @@ fetch(newUrl)
         let quantity;
         quantity = document.getElementById("quantity")
 
+        // créer un nouveau produit
         let objetProduit = new product(newId, produit.name, produit.description, price, liste.value, quantity.value, produit.imageUrl);
         let baskets = JSON.parse(localStorage.getItem('camera')) || [];
-
-
-
-        if (liste.value == "choice") {
-            let toast = document.getElementById('myToast');
-            toast.toggleAttribute("hidden");
-            let messageToast = document.getElementById("message");
-            messageToast.innerHTML = `Veuillez choisir la version`;
-            document.getElementById('closeToast').addEventListener('click', function () {
-                toast.setAttribute("hidden", "");
-            })
-
-        }
+        
+        // vérifie s'il est déja présent
+        // si oui, dejaPresent en true et sauvegarde sa place dans le localStorage
         let dejaPresent = false;
         let indexmodification;
         for (basket of baskets) {
@@ -113,15 +92,16 @@ fetch(newUrl)
                     indexModification = baskets.indexOf(basket);
             }
         }
+
+        // si déjaPresent incremente seulement la quantité
         if (dejaPresent) {
             baskets[indexModification].quantity = +baskets[indexModification].quantity + +objetProduit.quantity;
             localStorage.setItem("camera", JSON.stringify(baskets));
-            alert(`Vous avez ${baskets[indexModification].quantity} appareils avec l'option ${objetProduit.option} dans votre panier`)
+        // si non, ajoute le produit au localStorage
         } else {
             let basket = JSON.parse(localStorage.getItem("camera")) || [];
             basket.push(objetProduit);
-            localStorage.setItem("camera", JSON.stringify(basket));
-            console.log(`Vous avez choisi ${quantity.value} appareil avec l'option ${liste.value}`);
+            localStorage.setItem("camera", JSON.stringify(basket));          
         }
 
     })
