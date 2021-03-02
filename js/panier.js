@@ -2,6 +2,8 @@ let baskets = JSON.parse(localStorage.getItem('camera'));
 let total = 0;
 
 if (!baskets) {
+  let formulaireCommande =document.getElementById('formulaireCommande');
+  formulaireCommande.classList.add("d-none");
     let emptyBasket = document.getElementById("section");
     emptyBasket.innerHTML +=
         `<div class="container my-3 py-1">
@@ -14,7 +16,7 @@ if (!baskets) {
 } else {
     let fullBasket = document.getElementById("section");
     fullBasket.innerHTML +=
-        `<table class="table table-hover my-auto">
+        `<table class="table table-hover my-auto mx-5">
             <thead>
                 <tr class="text-center fs-5">
                     <th scole="col">Produit</th>
@@ -33,20 +35,10 @@ if (!baskets) {
                     <th colspan="4" class="bg-white"></th>
                     <th colspan="1" >Total : </th>
                     <th colspan="1" id="totalPrice"></th>
-
                 </tr>
             </tfoot>
         </table>
-
-        <div class="text-center my-4 row">
-            <div class="col-6">
-            <a class="btn btn-success mx-5" href="order.html">Passer la commande</a>
-            </div>
-            <div class="col-6">
-            <a class="btn btn-danger mx-5" id="clearBasket">Vider le panier</a>
-            </div>
-
-        </div>`
+        `
         //  let totalPrices = displayTotalBasket();
         //  console.log(totalPrices)
         //  let totalPrice = document.getElementById("totalPrice");

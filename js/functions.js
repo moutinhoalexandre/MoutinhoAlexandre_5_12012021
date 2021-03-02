@@ -1,7 +1,6 @@
 //Variables Globales
 let url = `http://localhost:3000/api/cameras`;
 
-    
 // convertir le prix
 function convertPrice(productPrice) {
     let price = `${productPrice}`;
@@ -29,24 +28,11 @@ class product {
     }
 }
 
-// calcul du total du panier
-
-// function displayTotalBasket () {
-//     let totalBasket = 0;
-//     console.log(baskets.quantity);
-//     totalProduct = baskets.quantity * baskets.price;
-//     console.log(totalProduct)
-//     totalBasket += totalProduct;
-//     return totalBasket;
-
-// }
-
 function displayTotalBasket () {
     let totalBasket = 0;
     JSON.parse(localStorage.getItem('camera')).forEach((cameras)=> {
         console.log(cameras.price * cameras.quantity)
-        totalBasket = totalBasket + (cameras.price * cameras.quantity);
-        
+        totalBasket = totalBasket + (cameras.price * cameras.quantity);        
     })
     return
     }
