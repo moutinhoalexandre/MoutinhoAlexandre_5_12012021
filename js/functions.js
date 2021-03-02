@@ -28,6 +28,8 @@ class product {
     }
 }
 
+// calcul du total
+
 function displayTotalBasket () {
     let totalBasket = 0;
     JSON.parse(localStorage.getItem('camera')).forEach((cameras)=> {
@@ -37,3 +39,22 @@ function displayTotalBasket () {
     return
     }
 
+// calcul du pillon
+function pillOnStorage() {
+            let baskets = JSON.parse(localStorage.getItem('camera')) || [];
+            if (baskets.length == 0){
+            }else {
+            let ajoutPill = document.getElementById("pillOnStorage");
+            let calculPill = 0;
+            for(basket of baskets){
+                calculPill += basket.quantity;
+            }
+            ajoutPill.innerHTML = `Panier <span class="badge rounded-pill bg-success align-middle my-auto">${calculPill}</span>`;
+        }
+    }
+
+// supprimer le Panier 
+function clearBasket() {
+    localStorage.clear();
+    location.reload()
+}

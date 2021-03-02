@@ -1,3 +1,6 @@
+//Mise à jour de la pill du panier
+pillOnStorage();
+
 //definition de l'URL de l'API
 url = `https://teddies-api.herokuapp.com/api/cameras`;
 

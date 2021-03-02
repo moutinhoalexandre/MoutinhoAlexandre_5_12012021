@@ -1,3 +1,5 @@
+//Mise à jour de la pill du panier
+pillOnStorage();
 
 // récupération de l'id du produit
 // let newId = location.search.substring(5);

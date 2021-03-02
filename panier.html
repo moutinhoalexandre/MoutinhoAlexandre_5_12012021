@@ -33,7 +33,7 @@
                         <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Panier</a>
+                        <a class="nav-link active" href="panier.html" id="pillOnStorage">Panier</a>
                     </li>
                 </ul>
             </div>
@@ -98,13 +98,31 @@
                 <a class="btn btn-success mx-5" href="order.html">Passer la commande</a>
             </div>
             <div class="col-6">
-                <a class="btn btn-danger mx-5" id="clearBasket">Vider le panier</a>
+                <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal" data-bs-target="#modalClearBasket">Vider le panier</button>
             </div>
 
         </div>
     </form>
 </div>
     <!-- end formulaire -->
+
+    <div class="modal fade" tabindex="-1" id="modalClearBasket" aria-labelledby="modalClearBasket" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Suppression panier</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment supprimer le panier ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="clearBasket">Oui</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- footer -->
     <footer class="bg-light py-4">

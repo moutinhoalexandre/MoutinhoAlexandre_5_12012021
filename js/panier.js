@@ -1,3 +1,6 @@
+//Mise à jour de la pill du panier
+pillOnStorage();
+
 let baskets = JSON.parse(localStorage.getItem('camera'));
 let total = 0;
 
@@ -80,3 +83,9 @@ if (!baskets) {
     totalPrice.innerHTML +=
     `${convertPrice(total)} `
 }
+
+let buttonClearBasket = document.getElementById("clearBasket")
+buttonClearBasket.addEventListener("click", (e) => {
+  
+  clearBasket();
+})
