@@ -1,4 +1,5 @@
 let baskets = JSON.parse(localStorage.getItem('camera'));
+let total = 0;
 
 if (!baskets) {
     let emptyBasket = document.getElementById("section");
@@ -11,5 +12,79 @@ if (!baskets) {
             </div>
         </div>`
 } else {
-    alert("le panier est plein")
+    let fullBasket = document.getElementById("section");
+    fullBasket.innerHTML +=
+        `<table class="table table-hover my-auto">
+            <thead>
+                <tr class="text-center fs-5">
+                    <th scole="col">Produit</th>
+                    <th scole="col">Nom</th>
+                    <th scole="col">Option</th>
+                    <th scole="col">Quantité</th>
+                    <th scole="col">Prix</th>
+                    <th scole="col" class="bg-light">Sous-total</th>
+                </tr>
+            </thead>
+            <tbody id="productsBaskets">
+            <!--insertion panier.js-->
+            </tbody>
+            <tfoot>
+                <tr class="text-center fs-5 bg-light">
+                    <th colspan="4" class="bg-white"></th>
+                    <th colspan="1" >Total : </th>
+                    <th colspan="1" id="totalPrice"></th>
+
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-center my-4 row">
+            <div class="col-6">
+            <a class="btn btn-success mx-5" href="order.html">Passer la commande</a>
+            </div>
+            <div class="col-6">
+            <a class="btn btn-danger mx-5" id="clearBasket">Vider le panier</a>
+            </div>
+
+        </div>`
+        //  let totalPrices = displayTotalBasket();
+        //  console.log(totalPrices)
+        //  let totalPrice = document.getElementById("totalPrice");
+        //  totalPrice.innerHTML +=
+        //  `${displayTotalBasket()} `
+
+    for (basket of baskets) {
+        let basketList = document.getElementById("productsBaskets");
+        basketList.innerHTML +=
+            `
+            <tr class="text-center">
+                <td class="w-25">
+                    <img src="${basket.imgurl}" class="img-fluid img-thumbnail" alt="...">
+                </td>
+                <td class="align-middle">
+                    <p>${basket.name}</p>
+                </td>
+                <td class="align-middle">
+                    <p>${basket.option}</p>
+                </td>
+                <td class="align-middle">
+                    <p>${basket.quantity}</p>
+                </td>
+                <td class="align-middle">
+                    <p>${convertPrice(basket.price)}</p>
+                </td>
+                <td class="align-middle bg-light">
+                    <p>${convertPrice(basket.quantity*basket.price)}</p>
+                </td>
+
+        </tr>`
+        total = total + (basket.quantity*basket.price)
+    }
+    console.log(total);
+    // a voir avec le mentor
+    // displayTotalBasket();
+    // console.log(displayTotalBasket())
+    let totalPrice = document.getElementById("totalPrice");
+    totalPrice.innerHTML +=
+    `${convertPrice(total)} `
 }

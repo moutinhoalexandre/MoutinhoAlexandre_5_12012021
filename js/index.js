@@ -23,7 +23,7 @@ fetch(url)
                                 <h5 class="card-title">${produit.name}</h5>
                             </div>
                             <div class="col-5 text-end" style="margin-top: 10px">
-                                <h5 class="card-title">${price}</h5>
+                                <h5 class="card-title">${price} €</h5>
                             </div>
                         </div>
                         <p class="card-text text-truncate">${produit.description}</p>

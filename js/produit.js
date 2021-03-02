@@ -12,8 +12,6 @@ fetch(newUrl)
 .then(response => response.json())
 .then((data) => {
     let produit = data;
-    //convertit le prix
-    let price = convertPrice(produit.price);
     // insertion de la card du produit
     let selectionProduct = document.getElementById('product');
     selectionProduct.innerHTML +=
@@ -27,7 +25,7 @@ fetch(newUrl)
                         <h5 class="card-title">${produit.name}</h5>
                     </div>
                     <div class="col-5 text-end" style="margin-top: 10px">
-                        <h5 class="card-title">${price}</h5>
+                        <h5 class="card-title">${convertPrice(produit.price)}</h5>
                     </div>
                 </div>
                 <select id="option" class="form-select mb-3" aria-label="choisir la version" >
@@ -78,7 +76,7 @@ fetch(newUrl)
         quantity = document.getElementById("quantity")
 
         // créer un nouveau produit
-        let objetProduit = new product(newId, produit.name, produit.description, price, liste.value, quantity.value, produit.imageUrl);
+        let objetProduit = new product(newId, produit.name, produit.description, produit.price, liste.value, quantity.value, produit.imageUrl);
         let baskets = JSON.parse(localStorage.getItem('camera')) || [];
         
         // vérifie s'il est déja présent
