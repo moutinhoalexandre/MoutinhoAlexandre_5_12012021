@@ -1,5 +1,5 @@
 //definition de l'URL de l'API
-url = `http://localhost:3000/api/cameras`;
+url = `https://teddies-api.herokuapp.com/api/cameras`;
 
 //fetch de l'URL
 fetch(url)

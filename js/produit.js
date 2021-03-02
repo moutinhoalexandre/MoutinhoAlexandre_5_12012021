@@ -5,7 +5,7 @@ var searchParams = new URLSearchParams(location.search);
 let newId = searchParams.get("_id");
 
 //modification de l'adresse d'appel à l'API
-let newUrl = `http://localhost:3000/api/cameras/${newId}`;
+let newUrl = `https://teddies-api.herokuapp.com/api/cameras/${newId}`;
 let versionChoice;
 
 fetch(newUrl)
@@ -89,18 +89,35 @@ fetch(newUrl)
         let quantity;
         quantity = document.getElementById("quantity")
 
+        let objetProduit = new product(newId, produit.name, produit.description, price, liste.value, quantity.value, produit.imageUrl);
+        let baskets = JSON.parse(localStorage.getItem('camera')) || [];
+
+
+
         if (liste.value == "choice") {
             let toast = document.getElementById('myToast');
-            console.log(toast)
             toast.toggleAttribute("hidden");
             let messageToast = document.getElementById("message");
-            console.log(messageToast);
             messageToast.innerHTML = `Veuillez choisir la version`;
             document.getElementById('closeToast').addEventListener('click', function () {
                 toast.setAttribute("hidden", "");
             })
+
+        }
+        let dejaPresent = false;
+        let indexmodification;
+        for (basket of baskets) {
+            switch (objetProduit.option) {
+                case basket.option:
+                    dejaPresent = true;
+                    indexModification = baskets.indexOf(basket);
+            }
+        }
+        if (dejaPresent) {
+            baskets[indexModification].quantity = +baskets[indexModification].quantity + +objetProduit.quantity;
+            localStorage.setItem("camera", JSON.stringify(baskets));
+            alert(`Vous avez ${baskets[indexModification].quantity} appareils avec l'option ${objetProduit.option} dans votre panier`)
         } else {
-            let objetProduit = new product(newId, produit.name, produit.description, price, liste.value, quantity.value, produit.imageUrl);
             let basket = JSON.parse(localStorage.getItem("camera")) || [];
             basket.push(objetProduit);
             localStorage.setItem("camera", JSON.stringify(basket));
