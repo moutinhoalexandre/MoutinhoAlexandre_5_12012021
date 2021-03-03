@@ -10,11 +10,9 @@ function convertPrice(productPrice) {
         minimumFractionDigits: 2
     }).format(price / 100);
     return price;
-
 }
 
 // création de la class produit
-
 class product {
     constructor(id, name, description, price, option, quantity, imgurl) {
         this.id = id;
@@ -29,17 +27,17 @@ class product {
 }
 
 // calcul du total
-
 function displayTotalBasket () {
     let totalBasket = 0;
-    JSON.parse(localStorage.getItem('camera')).forEach((cameras)=> {
+    (JSON.parse(localStorage.getItem('camera')) || []).forEach((cameras)=> {
         console.log(cameras.price * cameras.quantity)
-        totalBasket = totalBasket + (cameras.price * cameras.quantity);        
+        totalBasket = totalBasket + (cameras.price * cameras.quantity); 
+        
     })
-    return
+    return totalBasket
     }
 
-// calcul du pillon
+// calcul du pillOnStorage
 function pillOnStorage() {
             let baskets = JSON.parse(localStorage.getItem('camera')) || [];
             if (baskets.length == 0){
@@ -58,3 +56,15 @@ function clearBasket() {
     localStorage.clear();
     location.reload()
 }
+
+// ajout produit
+function addProduct (){
+        let buttonAdd= document.querySelectorAll('plus');
+        for (add of buttonAdd){
+            add.addEventListener('click', event=>{
+                baskets[event.target.id].qte ++;
+                localStorage.setItem(0, JSON.stringify(baskets));
+                location.reload();
+            })
+        }
+    }
