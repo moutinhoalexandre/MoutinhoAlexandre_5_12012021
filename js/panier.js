@@ -17,29 +17,31 @@ if (baskets.length <1) {
     </div>`;
 } else {
   let fullBasket = document.getElementById("section");
-  fullBasket.innerHTML += 
-  `<table class="table table-hover my-auto mx-5">
-    <thead>
-      <tr class="text-center fs-5">
-        <th scole="col">Produit</th>
-        <th scole="col">Nom</th>
-        <th scole="col">Option</th>
-        <th scole="col">Quantité</th>
-        <th scole="col">Prix</th>
-        <th scole="col" class="bg-light">Sous-total</th>
-      </tr>
-    </thead>
-    <tbody id="productsBaskets">
-    <!--insertion panier.js-->
-    </tbody>
-    <tfoot>
-      <tr class="text-center fs-5 bg-light">
-        <th colspan="4" class="bg-white"></th>
-        <th colspan="1" >Total : </th>
-        <th colspan="1" id="totalPrice"></th>
-      </tr>
-    </tfoot>
-  </table>`;
+  fullBasket.innerHTML += `
+  <div class="table-responsive">
+    <table class="table table-hover my-auto mx-0">
+      <thead>
+        <tr class="text-center fs-5">
+          <th scole="col">Produit</th>
+          <th scole="col">Nom</th>
+          <th scole="col">Option</th>
+          <th scole="col">Quantité</th>
+          <th scole="col">Prix</th>
+          <th scole="col" class="bg-light">Sous-total</th>
+        </tr>
+      </thead>
+      <tbody id="productsBaskets">
+      <!--insertion panier.js-->
+      </tbody>
+      <tfoot>
+        <tr class="text-center fs-5 bg-light">
+          <th colspan="4" class="bg-white"></th>
+          <th colspan="1" >Total : </th>
+          <th colspan="1" id="totalPrice"></th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>`;
   for (basket of baskets) {
     let indexProduct = baskets.indexOf(basket);
     let basketList = document.getElementById("productsBaskets");
@@ -60,7 +62,7 @@ if (baskets.length <1) {
                     <button type="button" class="rounded minus data-toggle="modal" data-target="#exampleModal">
                       <span class="fas fa-minus-square text-danger" data-index="${indexProduct}"  ></span>
                     </button>
-                    <span class="mx-3"> ${basket.quantity}</span>
+                    <span class="mx-0 mx-lg-3"> ${basket.quantity}</span>
                     <button type="button" class="rounded plus" data-toggle="modal" data-target="#exampleModal" ">
                       <span class="fas fa-plus-square text-success" data-index="${indexProduct}" ></span>
                     </button>

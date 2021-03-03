@@ -23,10 +23,10 @@ fetch(newUrl)
         <div class="col-md-5">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-7" style="margin-top: 10px">
+                    <div class="col-6 col-sm-7 mt-3">
                         <h5 class="card-title">${product.name}</h5>
                     </div>
-                    <div class="col-5 text-end" style="margin-top: 10px">
+                    <div class="col-6 col-sm-5 text-end mt-3">
                         <h5 class="card-title">${convertPrice(product.price)}</h5>
                     </div>
                 </div>
