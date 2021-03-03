@@ -4,17 +4,17 @@ pillOnStorage();
 let baskets = JSON.parse(localStorage.getItem("cameras")) || [];
 let total = 0;
 
-if (baskets.length <1) {
+if (baskets.length < 1) {
   let orderForm = document.getElementById("orderForm");
   orderForm.classList.add("d-none");
   let emptyBasket = document.getElementById("section");
-  emptyBasket.innerHTML += 
-  `<div class="container my-3 py-1">
-      <div class="text-center my-5 shadow p-3 mb-5 bg-body rounded">
-        <h1 class="fs-1 font-weight-bold text-secondary my-5">Votre panier semble vide, commencez vos achats</h1>
-        <a role="button" class="btn btn-success text-uppercase my-3" href="index.html">ça se passe par içi</a> 
-      </div>
-    </div>`;
+  emptyBasket.innerHTML += `
+  <div class="container my-3 py-1">
+    <div class="text-center my-5 shadow p-3 mb-5 bg-body rounded">
+      <h1 class="fs-1 font-weight-bold text-secondary my-5">Votre panier semble vide, commencez vos achats</h1>
+      <a role="button" class="btn btn-success text-uppercase my-3" href="index.html">ça se passe par içi</a> 
+    </div>
+  </div>`;
 } else {
   let fullBasket = document.getElementById("section");
   fullBasket.innerHTML += `
@@ -46,34 +46,34 @@ if (baskets.length <1) {
     let indexProduct = baskets.indexOf(basket);
     let basketList = document.getElementById("productsBaskets");
     basketList.innerHTML += `
-          <tr class="text-center">
-              <td class="w-25">
-                  <img src="${
-                    basket.imgurl
-                  }" class="img-fluid img-thumbnail" alt="...">
-              </td>
-              <td class="align-middle">
-                  <span>${basket.name}</span>
-              </td>
-              <td class="align-middle">
-                  <span>${basket.option}</span>
-              </td>
-              <td class="align-middle">
-                    <button type="button" class="rounded minus data-toggle="modal" data-target="#exampleModal">
-                      <span class="fas fa-minus-square text-danger" data-index="${indexProduct}"  ></span>
-                    </button>
-                    <span class="mx-0 mx-lg-3"> ${basket.quantity}</span>
-                    <button type="button" class="rounded plus" data-toggle="modal" data-target="#exampleModal" ">
-                      <span class="fas fa-plus-square text-success" data-index="${indexProduct}" ></span>
-                    </button>
-              </td>
-              <td class="align-middle">
-                  <span>${convertPrice(basket.price)}</span>
-              </td>
-              <td class="align-middle bg-light">
-                  <span>${convertPrice(basket.quantity * basket.price)}</span>
-              </td>
-      </tr>`;
+    <tr class="text-center">
+        <td class="w-25">
+            <img src="${
+              basket.imgurl
+            }" class="img-fluid img-thumbnail" alt="...">
+        </td>
+        <td class="align-middle">
+            <span>${basket.name}</span>
+        </td>
+        <td class="align-middle">
+            <span>${basket.option}</span>
+        </td>
+        <td class="align-middle">
+              <button type="button" class="rounded minus data-toggle="modal" data-target="#exampleModal">
+                <span class="fas fa-minus-square text-danger" data-index="${indexProduct}"  ></span>
+              </button>
+              <span class="mx-0 mx-lg-3"> ${basket.quantity}</span>
+              <button type="button" class="rounded plus" data-toggle="modal" data-target="#exampleModal" ">
+                <span class="fas fa-plus-square text-success" data-index="${indexProduct}" ></span>
+              </button>
+        </td>
+        <td class="align-middle">
+            <span>${convertPrice(basket.price)}</span>
+        </td>
+        <td class="align-middle bg-light">
+            <span>${convertPrice(basket.quantity * basket.price)}</span>
+        </td>
+    </tr>`;
   }
   let total = displayTotalBasket();
   let totalPrice = document.getElementById("totalPrice");
@@ -108,3 +108,14 @@ for (add of buttonAdd) {
     location.reload();
   });
 }
+
+let commande = document.getElementById("order");
+let orderForm = document.getElementById("orderForm");
+
+commande.addEventListener("click", (event) => {
+  if (orderForm.checkValidity()) {
+    event.preventDefault();
+    document.location.href = "order.html";
+  } else {
+  }
+});

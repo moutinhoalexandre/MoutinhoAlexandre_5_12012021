@@ -19,10 +19,9 @@
 
 <body>
     <!--Header + nav menu-->
-
     <nav class="navbar navbar-expand-lg navbar-light bg-white ">
         <div class="container-fluid mx-2 mx-lg-5">
-            <img class="img-fluid mr-auto" src="/images/logo.png" style="width: 170px;" />
+            <img class="img-fluid mr-auto w-25" src="/images/logo.png" />
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,60 +49,65 @@
     </main>
     <!-- end description -->
 
-    
     <!-- table -->
     <section id="section" class="container my-5 align-middle">
     </section>
     <!-- end table -->
 
     <!-- formulaire -->
-<div class="my-3 mx-5" id="orderForm">
-    <p class="my-5 fs-5">Merci de remplir ce formulaire pour passer votre commande, tous les champs sont obligatoires
-    </p>
-    <form class="row g-3 needs-validation" novalidate>
-        <div class="col-md-4">
-            <label for="validationCustom01" class="form-label">Prénom</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Prénom" required>
-        </div>
-        <div class="col-md-4">
-            <label for="validationCustom02" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Nom" required>
-        </div>
-        <div class="col-md-4">
-            <label for="validationCustomUsername" class="form-label">Email</label>
-            <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
+    <div class="my-3 mx-5">
+        <p class="my-5 fs-5">Merci de remplir ce formulaire pour passer votre commande, tous les champs sont
+            obligatoires
+        </p>
+        <form class="row g-3" id="orderForm">
+            <div class="col-md-4">
+                <label for="validationDefault01" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Prénom" pattern="^[a-zA-ZÀ-ÿ '\-]*$"
+                    required>
             </div>
-        </div>
-        <div class="col-md-6">
-            <label for="validationCustom03" class="form-label">Adresse</label>
-            <input type="text" class="form-control" id="address" placeholder="Adresse" required>
-        </div>
-        <div class="col-md-3">
-            <label for="validationCustom04" class="form-label">Ville</label>
-            <input type="text" class="form-control" id="city" placeholder="Ville" required>
-        </div>
-        <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                    Accepter les termes et conditions de ventes
-                </label>
+            <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Nom" pattern="^[a-zA-ZÀ-ÿ '\-]*$"
+                    required>
             </div>
-        </div>
-
-        <div class="text-center my-5 row">
-            <div class="col-12 col-sm-6 my-4">
-                <a class="btn btn-success mx-5" href="order.html">Passer la commande</a>
+            <div class="col-md-4">
+                <label for="validationDefaultUsername" class="form-label">Email</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="text" class="form-control" id="email" placeholder="Email"
+                        aria-describedby="inputGroupPrepend" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                </div>
             </div>
-            <div class="col-12 col-sm-6 my-4">
-                <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal" data-bs-target="#modalClearBasket">Vider le panier</button>
+            <div class="col-md-6">
+                <label for="validationDefault03" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="address" placeholder="Adresse" required>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault04" class="form-label">Ville</label>
+                <input type="text" class="form-control" id="city" placeholder="Ville" pattern="^[a-zA-ZÀ-ÿ '\-]*$"
+                    required>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                        Accepter les termes et conditions de ventes
+                    </label>
+                </div>
             </div>
 
-        </div>
-    </form>
-</div>
+            <div class="text-center my-5 row">
+                <div class="col-12 col-sm-6 my-4">
+                    <button type="submit" class="btn btn-success mx-5" id="order">Passer la commande</button>
+                </div>
+                <div class="col-12 col-sm-6 my-4">
+                    <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal"
+                        data-bs-target="#modalClearBasket">Vider le panier</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
     <!-- end formulaire -->
 
     <div class="modal fade" tabindex="-1" id="modalClearBasket" aria-labelledby="modalClearBasket" aria-hidden="true">
