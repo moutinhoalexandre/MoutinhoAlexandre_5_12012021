@@ -13,7 +13,7 @@ function convertPrice(productPrice) {
 }
 
 // création de la class produit
-class product {
+class productClass {
     constructor(id, name, description, price, option, quantity, imgurl) {
         this.id = id;
         this.name = name;
@@ -29,9 +29,9 @@ class product {
 // calcul du total
 function displayTotalBasket () {
     let totalBasket = 0;
-    (JSON.parse(localStorage.getItem('camera')) || []).forEach((cameras)=> {
-        console.log(cameras.price * cameras.quantity)
-        totalBasket = totalBasket + (cameras.price * cameras.quantity); 
+    (JSON.parse(localStorage.getItem('cameras')) || []).forEach((camera)=> {
+        console.log(camera.price * camera.quantity)
+        totalBasket = totalBasket + (camera.price * camera.quantity); 
         
     })
     return totalBasket
@@ -39,17 +39,17 @@ function displayTotalBasket () {
 
 // calcul du pillOnStorage
 function pillOnStorage() {
-            let baskets = JSON.parse(localStorage.getItem('camera')) || [];
-            if (baskets.length == 0){
-            }else {
-            let ajoutPill = document.getElementById("pillOnStorage");
-            let calculPill = 0;
-            for(basket of baskets){
-                calculPill += basket.quantity;
-            }
-            ajoutPill.innerHTML = `Panier <span class="badge rounded-pill bg-success align-middle my-auto">${calculPill}</span>`;
-        }
+    let baskets = JSON.parse(localStorage.getItem('cameras')) || [];
+    if (baskets.length == 0){
+    }else {
+        let ajoutPill = document.getElementById("pillOnStorage");
+        let calculPill = 0;
+        for(basket of baskets){
+            calculPill += basket.quantity;
     }
+    ajoutPill.innerHTML = `Panier <span class="badge rounded-pill bg-success align-middle my-auto">${calculPill}</span>`;
+}
+}
 
 // supprimer le Panier 
 function clearBasket() {

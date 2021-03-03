@@ -1,12 +1,12 @@
 //Mise à jour de la pill du panier
 pillOnStorage();
 
-let baskets = JSON.parse(localStorage.getItem("camera"));
+let baskets = JSON.parse(localStorage.getItem("cameras")) || [];
 let total = 0;
 
-if (!baskets) {
-  let formulaireCommande = document.getElementById("formulaireCommande");
-  formulaireCommande.classList.add("d-none");
+if (baskets.length <1) {
+  let orderForm = document.getElementById("orderForm");
+  orderForm.classList.add("d-none");
   let emptyBasket = document.getElementById("section");
   emptyBasket.innerHTML += 
   `<div class="container my-3 py-1">
@@ -62,7 +62,7 @@ if (!baskets) {
                     </button>
                     <span class="mx-3"> ${basket.quantity}</span>
                     <button type="button" class="rounded plus" data-toggle="modal" data-target="#exampleModal" ">
-                      <span class="fas fa-plus-square text-success" id="${indexProduct}" ></span>
+                      <span class="fas fa-plus-square text-success" data-index="${indexProduct}" ></span>
                     </button>
               </td>
               <td class="align-middle">
@@ -83,19 +83,16 @@ buttonClearBasket.addEventListener("click", (e) => {
   clearBasket();
 });
 
-let panier = JSON.parse(localStorage.getItem("camera")) || [];
-
 let buttonMinus = document.getElementsByClassName("minus");
 for (minus of buttonMinus) {
   minus.addEventListener("click", (event) => {
     const index = event.target.getAttribute("data-index");
-    if (panier[index].quantity > 1) {
-      panier[index].quantity--;
+    if (baskets[index].quantity > 1) {
+      baskets[index].quantity--;
     } else {
-      panier.splice(index, 1);
+      baskets.splice(index, 1);
     }
-
-    localStorage.setItem("camera", JSON.stringify(panier));
+    localStorage.setItem("cameras", JSON.stringify(baskets));
     location.reload();
   });
 }
@@ -103,10 +100,9 @@ for (minus of buttonMinus) {
 let buttonAdd = document.getElementsByClassName("plus");
 for (add of buttonAdd) {
   add.addEventListener("click", (event) => {
-    console.log(event.target.id);
-    panier[event.target.id].quantity++;
-    console.log(panier[event.target.id].quantity);
-    localStorage.setItem("camera", JSON.stringify(panier));
+    const index = event.target.getAttribute("data-index");
+    baskets[index].quantity++;
+    localStorage.setItem("cameras", JSON.stringify(baskets));
     location.reload();
   });
 }
