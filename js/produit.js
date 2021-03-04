@@ -110,14 +110,6 @@ fetch(newUrl)
             localStorage.setItem("cameras", JSON.stringify(basket));          
         }
     })
-
-
-
-
-    
-
-    
-    
     
 }
 )

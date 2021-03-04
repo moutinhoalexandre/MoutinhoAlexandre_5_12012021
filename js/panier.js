@@ -83,6 +83,7 @@ if (baskets.length < 1) {
 let buttonClearBasket = document.getElementById("clearBasket");
 buttonClearBasket.addEventListener("click", (e) => {
   clearBasket();
+  location.reload();
 });
 
 let buttonMinus = document.getElementsByClassName("minus");
@@ -115,7 +116,47 @@ let orderForm = document.getElementById("orderForm");
 commande.addEventListener("click", (event) => {
   if (orderForm.checkValidity()) {
     event.preventDefault();
-    document.location.href = "order.html";
+
+    // on stocke l'heure et la date de la commande
+    let todayDate = new Date();
+    let date = todayDate.getDate() + "-" + (todayDate.getMonth() + 1) + "-" + todayDate.getFullYear();
+    let hours = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
+    let fullDate = {date, hours};
+    console.log(fullDate);
+    let infoOrder = JSON.parse(localStorage.getItem("date")) || [];
+    infoOrder.push(fullDate);
+    localStorage.setItem("date", JSON.stringify(infoOrder));
+
+    // on prépare les infos pour l'envoie en POST
+    const contact = {
+      firstName : document.getElementById("firstName").value,
+      lastName : document.getElementById("lastName").value,
+      address : document.getElementById("address").value,
+      city : document.getElementById("city").value,
+      email : document.getElementById("email").value
+    }
+    let products = [];
+    for (listId of baskets) {
+      products.push(listId.id)
+    }
+
+    // on envoie en POST
+    fetch("https://teddies-api.herokuapp.com/api/cameras/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ contact, products }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("order", JSON.stringify(data));
+        document.location.href = "order.html";
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
   } else {
   }
 });
+

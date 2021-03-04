@@ -54,7 +54,6 @@ function pillOnStorage() {
 // supprimer le Panier 
 function clearBasket() {
     localStorage.clear();
-    location.reload()
 }
 
 // ajout produit
