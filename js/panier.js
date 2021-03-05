@@ -120,7 +120,7 @@ commande.addEventListener("click", (event) => {
     // on stocke l'heure et la date de la commande
     let todayDate = new Date();
     let date = todayDate.getDate() + "-" + (todayDate.getMonth() + 1) + "-" + todayDate.getFullYear();
-    let hours = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
+    let hours = todayDate.getHours() + ":" + todayDate.getMinutes();
     let fullDate = {date, hours};
     console.log(fullDate);
     let infoOrder = JSON.parse(localStorage.getItem("date")) || [];

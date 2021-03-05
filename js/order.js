@@ -13,7 +13,7 @@ contact.innerHTML += `
     <p class="fs-5"><span class="fw-bold text-capitalize">${
       order.contact.firstName
     }</span>, merci pour votre achat sur notre site !</p>
-    <p class="fs-5"> Votre commande passé le <span class="fw-bold">${
+    <p class="fs-5"> Votre commande passée le <span class="fw-bold">${
       date[0].date
     }</span> à <span class="fw-bold">${
   date[0].hours
@@ -23,10 +23,10 @@ contact.innerHTML += `
     <p class="fs-5">Elle porte la référence <span class="fw-bold">${
       order.orderId
     }</span> </p>
-    <p class="fs-5">Votre facture va vous être envoyé par mail à : <span class="fw-bold">${
+    <p class="fs-5">Votre facture va vous être transmise par mail à : <span class="fw-bold">${
       order.contact.email
     }</span>.</p>
-    <p class="fs-5">Elle sera envoyé à l'adresse suivante :
+    <p class="fs-5">Votre commande sera envoyée à l'adresse suivante :
     <div class=" fs-5 text-center fw-bold">
         <p class="text-capitalize">${order.contact.firstName} ${
   order.contact.lastName
