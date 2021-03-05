@@ -29,7 +29,7 @@ fetch(url)
                             </div>
                         </div>
                         <p class="card-text text-truncate">${produit.description}</p>
-                        <a href="./produit.html?_id=${produit._id}" class="btn btn-success">Voir ce produit</a>
+                        <a href="./produit.html?_id=${produit._id}" class="btn btn-secondary">Acheter ce produit</a>
                     </div>
                 </div>
             </div>`;

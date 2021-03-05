@@ -47,7 +47,7 @@ fetch(newUrl)
                     </select>
                     </div>
                 </div>
-                <button id="btnAddBasket" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal" >Ajouter au Panier</button>
+                <button id="btnAddBasket" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal" >Ajouter au Panier</button>
             </div>
             <div class="toast show position-absolute top-50 start-50 translate-middle bg-danger" id="myToast" hidden>
                 <div id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">

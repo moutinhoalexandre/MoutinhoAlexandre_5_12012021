@@ -47,7 +47,7 @@ function pillOnStorage() {
         for(basket of baskets){
             calculPill += basket.quantity;
     }
-    ajoutPill.innerHTML = `Panier <span class="badge rounded-pill bg-success align-middle my-auto">${calculPill}</span>`;
+    ajoutPill.innerHTML = `Panier <span class="badge rounded-pill bg-secondary align-middle my-auto">${calculPill}</span>`;
 }
 }
 

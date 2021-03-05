@@ -12,12 +12,14 @@ if (baskets.length < 1) {
   <div class="container my-3 py-1">
     <div class="text-center my-5 shadow p-3 mb-5 bg-body rounded">
       <h1 class="fs-1 font-weight-bold text-secondary my-5">Votre panier semble vide, commencez vos achats</h1>
-      <a role="button" class="btn btn-success text-uppercase my-3" href="index.html">ça se passe par ici</a> 
+      <a role="button" class="btn btn-secondary text-uppercase my-3" href="index.html">ça se passe par ici</a> 
     </div>
   </div>`;
 } else {
+  orderForm.classList.add("d-none");
   let fullBasket = document.getElementById("section");
   fullBasket.innerHTML += `
+   <p class="text-center fs-4 text-light bg-secondary">Contenue du panier</p>
   <div class="table-responsive">
     <table class="table table-hover my-auto mx-0">
       <thead>
@@ -41,6 +43,16 @@ if (baskets.length < 1) {
         </tr>
       </tfoot>
     </table>
+  </div>
+  <div class="text-center my-5 row" id="cacheButton">
+                <div class="col-12 col-sm-6 my-4">
+                    <button type="submit" class="btn btn-secondary mx-5" id="validationBasket">Valider le panier</button>
+                </div>
+                <div class="col-12 col-sm-6 my-4">
+                    <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal"
+                        data-bs-target="#modalClearBasket" >Vider le panier</button>
+                </div>
+
   </div>`;
   for (basket of baskets) {
     let indexProduct = baskets.indexOf(basket);
@@ -79,6 +91,14 @@ if (baskets.length < 1) {
   let totalPrice = document.getElementById("totalPrice");
   totalPrice.innerHTML += `${convertPrice(total)}`;
 }
+
+let validationBasket = document.getElementById("validationBasket");
+let cacheButton = document.getElementById("cacheButton")
+validationBasket.addEventListener("click", () => {
+  orderForm.classList.toggle("d-none");
+  cacheButton.classList.add("d-none")
+})
+
 
 let buttonClearBasket = document.getElementById("clearBasket");
 buttonClearBasket.addEventListener("click", (e) => {
