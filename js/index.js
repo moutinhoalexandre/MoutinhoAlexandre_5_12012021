@@ -20,7 +20,7 @@ fetch(url)
                 <div class="card border bg-light shadow p-3 mb-5 bg-body rounded">
                     <div class="card-body">
                         <div class="row">
-                            <img src="${produit.imageUrl}" class="img-fluid img-thumbnail card-img-top p-1" alt="${produit.name}">
+                            <a href="./produit.html?_id=${produit._id}"><img src="${produit.imageUrl}" class="img-fluid img-thumbnail p-1" alt="${produit.name}"></a>
                             <div class="col-6 col-sm-7 mt-3" >
                                 <h5 class="card-title">${produit.name}</h5>
                             </div>

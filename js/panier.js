@@ -111,10 +111,10 @@ for (add of buttonAdd) {
 }
 
 let commande = document.getElementById("order");
-let orderForm = document.getElementById("orderForm");
+let orderFormValidity = document.getElementById("orderFormValidity");
 
 commande.addEventListener("click", (event) => {
-  if (orderForm.checkValidity()) {
+  if (orderFormValidity.checkValidity()) {
     event.preventDefault();
 
     // on stocke l'heure et la date de la commande
