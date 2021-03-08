@@ -30,7 +30,6 @@ class productClass {
 function displayTotalBasket () {
     let totalBasket = 0;
     (JSON.parse(localStorage.getItem('cameras')) || []).forEach((camera)=> {
-        console.log(camera.price * camera.quantity)
         totalBasket = totalBasket + (camera.price * camera.quantity); 
         
     })
@@ -39,13 +38,13 @@ function displayTotalBasket () {
 
 // calcul du pillOnStorage
 function pillOnStorage() {
-    let baskets = JSON.parse(localStorage.getItem('cameras')) || [];
-    if (baskets.length == 0){
+    let basket = JSON.parse(localStorage.getItem('cameras')) || [];
+    if (basket.length == 0){
     }else {
         let ajoutPill = document.getElementById("pillOnStorage");
         let calculPill = 0;
-        for(basket of baskets){
-            calculPill += basket.quantity;
+        for(product of basket){
+            calculPill += product.quantity;
     }
     ajoutPill.innerHTML = `Panier <span class="badge rounded-pill bg-secondary align-middle my-auto">${calculPill}</span>`;
 }
@@ -58,12 +57,42 @@ function clearBasket() {
 
 // ajout produit
 function addProduct (){
-        let buttonAdd= document.querySelectorAll('plus');
-        for (add of buttonAdd){
-            add.addEventListener('click', event=>{
-                baskets[event.target.id].qte ++;
-                localStorage.setItem(0, JSON.stringify(baskets));
-                location.reload();
-            })
-        }
+    let buttonAdd= document.querySelectorAll('plus');
+    for (add of buttonAdd){
+        add.addEventListener('click', event=>{
+            basket[event.target.id].qte ++;
+            localStorage.setItem(0, JSON.stringify(basket));
+            location.reload();
+        })
     }
+}
+
+//supprime un produit
+function minusProduct() {
+  let buttonMinus = document.getElementsByClassName("minus");
+  for (minus of buttonMinus) {
+    minus.addEventListener("click", (event) => {
+      const index = event.target.getAttribute("data-index");
+      if (basket[index].quantity > 1) {
+        basket[index].quantity --;
+      } else {
+        basket.splice(index, 1);
+      }
+      localStorage.setItem("cameras", JSON.stringify(basket));
+      location.reload();
+    });
+  }
+}
+
+// ajoute un produit
+function addProduct() {
+  let buttonAdd = document.getElementsByClassName("plus");
+  for (add of buttonAdd) {
+    add.addEventListener("click", (event) => {
+      const index = event.target.getAttribute("data-index");
+      basket[index].quantity ++;
+      localStorage.setItem("cameras", JSON.stringify(basket));
+      location.reload();
+    });
+  }
+}

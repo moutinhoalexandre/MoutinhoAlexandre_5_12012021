@@ -8,9 +8,8 @@ url = `https://teddies-api.herokuapp.com/api/cameras`;
 fetch(url)
 .then(response => response.json())
 .then((data) => {
-    let produits = data;
     //boucle pour chaque iteration d'un produit
-    for (let produit of produits) {
+    for (let produit of data) {
         //recupère l'élément liste dans le HTML
         let card = document.getElementById('liste');
         //convertit le prix
