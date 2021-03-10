@@ -23,7 +23,7 @@ function addCards(produit) {
             <div class="card border bg-light shadow p-3 mb-5 bg-body rounded">
                 <div class="card-body">
                     <div class="row">
-                        <a href="./produit.html?_id=${produit._id}"><img src="${produit.imageUrl}" class="img-fluid img-thumbnail p-1" alt="${produit.name}"></a>
+                        <a href="./html/produit.html?_id=${produit._id}"><img src="${produit.imageUrl}" class="img-fluid img-thumbnail p-1" alt="${produit.name}"></a>
                         <div class="col-6 col-sm-7 mt-3" >
                             <h5 class="card-title">${produit.name}</h5>
                         </div>
@@ -32,7 +32,7 @@ function addCards(produit) {
                         </div>
                     </div>
                     <p class="card-text text-truncate">${produit.description}</p>
-                    <a href="./produit.html?_id=${produit._id}" class="btn btn-secondary">Acheter ce produit</a>
+                    <a href="./html/produit.html?_id=${produit._id}" class="btn btn-secondary">Acheter ce produit</a>
                 </div>
             </div>
         </div>`;
