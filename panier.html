@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <!--Header + nav menu-->
+    <!--nav menu-->
     <nav class="navbar navbar-expand-lg navbar-light bg-white ">
         <div class="container-fluid mx-2 mx-lg-5">
             <img class="img-fluid mx-4 mx-lg-0 mr-auto w-25" src="./images/logo.png" />
@@ -32,49 +32,92 @@
                         <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="panier.html" id="pillOnStorage">Panier</a>
+                        <a class="nav-link active" href="panier.html" id="basketPreview">Panier</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- header end -->
+    <!-- end nav menu -->
 
     <!-- description -->
     <main>
         <div class="mx-5 mt-4 align-middle">
-           
         </div>
     </main>
     <!-- end description -->
 
+    <!-- emptyBasket -->
+    <section id="emptyBasket">
+          <div class="container my-3 py-1">
+              <div class="text-center my-5 shadow p-3 mb-5 bg-body rounded">
+                  <h1 class="fs-1 font-weight-bold text-secondary my-5">Votre panier semble vide, commencez vos achats
+                  </h1>
+                  <a role="button" class="btn btn-secondary text-uppercase my-3" href="index.html">ça se passe par
+                      ici</a>
+              </div>
+          </div>`
+    </section>
+    <!-- end emptyBasket -->
+
     <!-- table -->
-    <section id="section" class="container my-5 align-middle">
+    <section id="section" class="container my-5 align-middle ">
+        <div class=" d-none" id="basket">
+            <p class="text-center fs-4 text-light bg-secondary basket d-none">Contenue du panier</p>
+            <div class="table-responsive">
+                <table class="table table-hover my-auto mx-0">
+                    <thead>
+                        <tr class="text-center fs-5">
+                            <th scole="col">Produit</th>
+                            <th scole="col">Nom</th>
+                            <th scole="col">Option</th>
+                            <th scole="col">Quantité</th>
+                            <th scole="col">Prix</th>
+                            <th scole="col" class="bg-light">Sous-total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsBasket">
+                        <!--insertion panier.js-->
+                    </tbody>
+                    <tfoot>
+                        <tr class="text-center fs-5 bg-light">
+                            <th colspan="4" class="bg-white"></th>
+                            <th colspan="1">Total : </th>
+                            <th colspan="1" id="totalPrice"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="text-center my-5 row" id="cacheButton">
+                <div class="col-12 col-sm-6 my-4">
+                    <button type="submit" class="btn btn-secondary mx-5" id="validationBasket">Valider le panier</button>
+                </div>
+                <div class="col-12 col-sm-6 my-4">
+                    <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal" data-bs-target="#modalClearBasket">Vider le panier</button>
+                </div>
+
+            </div>
+        </div>
     </section>
     <!-- end table -->
 
     <!-- formulaire -->
     <div class="my-3 mx-5" id="orderForm">
-        <p class="my-5 fs-5">Merci de remplir ce formulaire pour passer votre commande, tous les champs sont
-            obligatoires
-        </p>
+        <p class="my-5 fs-5">Merci de remplir ce formulaire pour passer votre commande, tous les champs sont obligatoires</p>
         <form class="row g-3" id="orderFormValidity">
             <div class="col-md-4">
                 <label for="validationDefault01" class="form-label">Prénom</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Prénom" pattern="^[a-zA-ZÀ-ÿ '\-]*$"
-                    required>
+                <input type="text" class="form-control" id="firstName" placeholder="Prénom" pattern="^[a-zA-ZÀ-ÿ '\-]*$" required>
             </div>
             <div class="col-md-4">
                 <label for="validationDefault02" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Nom" pattern="^[a-zA-ZÀ-ÿ '\-]*$"
-                    required>
+                <input type="text" class="form-control" id="lastName" placeholder="Nom" pattern="^[a-zA-ZÀ-ÿ '\-]*$" required>
             </div>
             <div class="col-md-4">
                 <label for="validationDefaultUsername" class="form-label">Email</label>
                 <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend">@</span>
-                    <input type="text" class="form-control" id="email" placeholder="Email"
-                        aria-describedby="inputGroupPrepend" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                    <input type="text" class="form-control" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 </div>
             </div>
             <div class="col-md-6">
@@ -83,21 +126,18 @@
             </div>
             <div class="col-md-3">
                 <label for="validationDefault04" class="form-label">Ville</label>
-                <input type="text" class="form-control" id="city" placeholder="Ville" pattern="^[a-zA-ZÀ-ÿ '\-]*$"
-                    required>
+                <input type="text" class="form-control" id="city" placeholder="Ville" pattern="^[a-zA-ZÀ-ÿ '\-]*$" required>
             </div>
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
                     <label class="form-check-label" for="invalidCheck2">
-                        <p data-bs-toggle="tooltip" data-bs-placement="top" title="Termes et conditions de vente : Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum consequatur quos quis, asperiores nostrum cupiditate consequuntur earum quae saepe distinctio!">
-                            Accepter les termes et conditions de vente</p>
+                        <p data-bs-toggle="tooltip" data-bs-placement="top" title="Termes et conditions de vente : Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum consequatur quos quis, asperiores nostrum cupiditate consequuntur earum quae saepe distinctio!"> Accepter les termes et conditions de vente</p>
                     </label>
                 </div>
             </div>
 
             <div class="text-center my-5 d-md-flex justify-content-md-end">
-
                 <div class="col-12 col-sm-6 my-4">
                     <button type="submit" class="btn btn-secondary mx-5" id="order">Passer la commande</button>
                 </div>
@@ -107,6 +147,7 @@
     </div>
     <!-- end formulaire -->
 
+    <!-- modal -->
     <div class="modal fade" tabindex="-1" id="modalClearBasket" aria-labelledby="modalClearBasket" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -124,16 +165,19 @@
             </div>
         </div>
     </div>
+    <!-- end modal -->
 
     <!-- footer -->
     <footer class="bg-light py-4">
         <ul class="list-inline text-center">
             <li class="list-inline-item"><a href="index.html" title="Accueil">Accueil</a></li>
-            <li class="list-inline-item"><a href="mailto:orinoco@mail.com?subject=Contact" title="Contact">Contact</a></li>
+            <li class="list-inline-item"><a href="mailto:orinoco@mail.com?subject=Contact" title="Contact">Contact</a>
+            </li>
             <li class="list-inline-item"><a href="#" title="Mentions Légales">Mentions Légales</a></li>
         </ul>
         <p class="copyright text-center">Orinoco © 2020</p>
     </footer>
+    <!-- end footer -->
 
     <script src="https://kit.fontawesome.com/fd986726cd.js" crossorigin="anonymous"></script>
 
