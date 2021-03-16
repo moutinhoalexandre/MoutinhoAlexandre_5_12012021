@@ -5,9 +5,7 @@ basketPreview();
 fetch(URL)
   .then((response) => response.json())
   .then((data) => {
-    for (produit of data) {
       addCards(data);
-    }
   })
   .catch((erreur) => console.log("erreur : " + erreur));
 
