@@ -5,7 +5,7 @@ const date = JSON.parse(localStorage.getItem("date")) || [];
 const informations = document.getElementById("contact");
 informations.innerHTML += `
     <p class="fs-5"><span class="fw-bold text-capitalize">${order.contact.firstName}</span>, merci pour votre achat sur notre site !</p>
-    <p class="fs-5"> Votre commande passée le <span class="fw-bold">${date[0].date}</span> à <span class="fw-bold">${date[0].HOURS}</span> d'un montant total de <span class="fw-bold">${convertPrice(displayTotalBasket())}</span> a été validée.</p>
+    <p class="fs-5"> Votre commande passée le <span class="fw-bold">${date[0].date}</span> à <span class="fw-bold">${date[0].hours}</span> d'un montant total de <span class="fw-bold">${convertPrice(displayTotalBasket())}</span> a été validée.</p>
     <p class="fs-5">Elle porte la référence <span class="fw-bold">${order.orderId}</span>.</p>
     <p class="fs-5">Votre facture va vous être transmise par mail à : <span class="fw-bold">${order.contact.email}</span>.</p>
     <p class="fs-5">Votre commande sera envoyée à l'adresse suivante :
