@@ -67,10 +67,10 @@ if (basket.length < 1) {
 
   //validation du formulaire et envoie en POST
   const order = document.getElementById("order");
-  const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
+  const regexNameCity = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
   const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+  const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
   const checkBox = document.getElementById("invalidCheck2");
-  const adress = document.getElementById("address")
 
   order.addEventListener("click", (event) => {
     // on prépare les infos pour l'envoie en POST
@@ -84,10 +84,10 @@ if (basket.length < 1) {
     // on valide que le formulaire soit correctement rempli
     if (
       (regexMail.test(contact.email) == true) &
-      (regexName.test(contact.firstName) == true) &
-      (regexName.test(contact.lastName) == true) &
-      (regexName.test(contact.city) == true) &
-      (address.required == true) &
+      (regexNameCity.test(contact.firstName) == true) &
+      (regexNameCity.test(contact.lastName) == true) &
+      (regexNameCity.test(contact.city) == true) &
+      (regexAddress.test(contact.address) == true) &
       (checkBox.checked == true)
     ) {
       event.preventDefault();
