@@ -85,7 +85,7 @@ if (basket.length < 1) {
       (regexMail.test(contact.email) == true) &
       (regexName.test(contact.firstName) == true) &
       (regexName.test(contact.lastName) == true) &
-      (regexName.test(contact.lastName) == true) &
+      (regexName.test(contact.city) == true) &
       (checkBox.checked == true)
     ) {
       event.preventDefault();
