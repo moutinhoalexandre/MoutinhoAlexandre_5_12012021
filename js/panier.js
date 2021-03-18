@@ -70,6 +70,7 @@ if (basket.length < 1) {
   const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
   const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
   const checkBox = document.getElementById("invalidCheck2");
+  const adress = document.getElementById("address")
 
   order.addEventListener("click", (event) => {
     // on prépare les infos pour l'envoie en POST
@@ -86,6 +87,7 @@ if (basket.length < 1) {
       (regexName.test(contact.firstName) == true) &
       (regexName.test(contact.lastName) == true) &
       (regexName.test(contact.city) == true) &
+      (address.required == true) &
       (checkBox.checked == true)
     ) {
       event.preventDefault();
