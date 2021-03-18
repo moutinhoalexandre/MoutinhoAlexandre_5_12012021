@@ -15,7 +15,6 @@ if (basket.length < 1) {
   fullBasket.classList.toggle("d-none");
   for (product of basket) {
     displayProductListTable(product);
-   ;
   }
 
   // ajouter produit
@@ -68,10 +67,27 @@ if (basket.length < 1) {
 
   //validation du formulaire et envoie en POST
   const order = document.getElementById("order");
-  const orderFormValidity = document.getElementById("orderFormValidity");
+  const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
+  const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+  const checkBox = document.getElementById("invalidCheck2");
 
   order.addEventListener("click", (event) => {
-    if (orderFormValidity.checkValidity()) {
+    // on prépare les infos pour l'envoie en POST
+    let contact = {
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      address: document.getElementById("address").value,
+      city: document.getElementById("city").value,
+      email: document.getElementById("email").value,
+    };
+    // on valide que le formulaire soit correctement rempli
+    if (
+      (regexMail.test(contact.email) == true) &
+      (regexName.test(contact.firstName) == true) &
+      (regexName.test(contact.lastName) == true) &
+      (regexName.test(contact.lastName) == true) &
+      (checkBox.checked == true)
+    ) {
       event.preventDefault();
 
       // on stocke l'heure et la date de la commande
@@ -104,14 +120,6 @@ if (basket.length < 1) {
       infoOrder.push(fullDate);
       localStorage.setItem("date", JSON.stringify(infoOrder));
 
-      // on prépare les infos pour l'envoie en POST
-      let contact = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        address: document.getElementById("address").value,
-        city: document.getElementById("city").value,
-        email: document.getElementById("email").value,
-      };
       let products = [];
       for (listId of basket) {
         products.push(listId.id);
@@ -131,6 +139,10 @@ if (basket.length < 1) {
           document.location.href = "order.html";
         })
         .catch((erreur) => console.log("erreur : " + erreur));
+    } else {
+      alert(
+        "Veuillez correctement renseigner l'entièreté du formulaire pour valider votre commande."
+      );
     }
   });
 }
