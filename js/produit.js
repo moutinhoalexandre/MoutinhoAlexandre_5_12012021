@@ -2,85 +2,85 @@
 basketPreview();
 
 // récupération de l'id du produit
-const SEARCH_PARAMS = new URLSearchParams(location.search);
-const NEW_ID = SEARCH_PARAMS.get("_id");
+const searchParams = new URLSearchParams(location.search);
+const newId = searchParams.get("_id");
 
 //modification de l'adresse d'appel à l'API
-const NEW_URL = `https://teddies-api.herokuapp.com/api/cameras/${NEW_ID}`;
+const newUrl = `https://teddies-api.herokuapp.com/api/cameras/${newId}`;
 
-fetch(NEW_URL)
+fetch(newUrl)
   .then((response) => response.json())
     .then((data) => {
-      const PRODUCT = data;
+      const product = data;
     addCard(data);
 
     // fonction pour la création de la card de la page produit
-    function addCard(PRODUCT) {
+    function addCard(product) {
       
       // insertion des information de la card du produit
-      const SELECTION_PRODUCT_IMAGE = document.getElementById("productImage");
-      SELECTION_PRODUCT_IMAGE.innerHTML += `
-        <img src="${PRODUCT.imageUrl}" class="img-fluid img-thumbnail" alt="${PRODUCT.name}">
+      const selectionProductImage = document.getElementById("productImage");
+      selectionProductImage.innerHTML += `
+        <img src="${product.imageUrl}" class="img-fluid img-thumbnail" alt="${product.name}">
         `;
-      const SELECTION_PRODUCT_NAME = document.getElementById("productName");
-      SELECTION_PRODUCT_NAME.innerHTML += `
-        <h5 class="card-title">${PRODUCT.name}</h5>
+      const selectionProductName = document.getElementById("productName");
+      selectionProductName.innerHTML += `
+        <h5 class="card-title">${product.name}</h5>
         `;
-      const SELECTION_PRODUCT_PRICE = document.getElementById("productPrice");
-      SELECTION_PRODUCT_PRICE.innerHTML += `
-         <h5 class="card-title">${convertPrice(PRODUCT.price)}</h5>
+      const selectionProductPrice = document.getElementById("productPrice");
+      selectionProductPrice.innerHTML += `
+         <h5 class="card-title">${convertPrice(product.price)}</h5>
         `;
-      const SELECTION_PRODUCT_DESCRIPTION = document.getElementById("productDescription");
-      SELECTION_PRODUCT_DESCRIPTION.innerHTML += `
-        <p class="card-text">${PRODUCT.description}</p>
+      const selectionProductDescription = document.getElementById("productDescription");
+      selectionProductDescription.innerHTML += `
+        <p class="card-text">${product.description}</p>
         `;
-      addLenses(PRODUCT);
+      addLenses(product);
     }
 
-    function addLenses(PRODUCT) {
-      const VERSION_CHOICE = document.getElementById("option");
-      for (let lenses of PRODUCT.lenses) {
-        VERSION_CHOICE.innerHTML += `<option value="${lenses}">${lenses}</option>`;
+    function addLenses(product) {
+      const versionChoice = document.getElementById("option");
+      for (let lenses of product.lenses) {
+        versionChoice.innerHTML += `<option value="${lenses}">${lenses}</option>`;
       }
     }
 
-    const BTN_ADD_BASKET = document.getElementById("btnAddBasket");
-    BTN_ADD_BASKET.addEventListener("click", (e) => {
+    const btnAddBasket = document.getElementById("btnAddBasket");
+    btnAddBasket.addEventListener("click", (e) => {
       e.preventDefault();
-      const LIST = document.getElementById("option");
-      const QUANTITY = document.getElementById("quantity");
+      const list = document.getElementById("option");
+      const quantity = document.getElementById("quantity");
 
       // créer un nouveau produit
       let objectProduct = new Product(
-        NEW_ID,
-        PRODUCT.name,
-        PRODUCT.description,
-        PRODUCT.price,
-        LIST.value,
-        QUANTITY.value,
-        PRODUCT.imageUrl
+        newId,
+        product.name,
+        product.description,
+        product.price,
+        list.value,
+        quantity.value,
+        product.imageUrl
       );
       // vérifie s'il est déja présent
       // si oui, dejaPresent en true et sauvegarde sa place dans le localStorage
       let isAlreadyPresent = false;
       let indexModification;
-      for (product of BASKET) {
-        switch (product.option) {
+      for (products of basket) {
+        switch (products.option) {
           case objectProduct.option:
             isAlreadyPresent = true;
-            indexModification = BASKET.indexOf(product);
+            indexModification = basket.indexOf(products);
         }
       }
 
       // si déjaPresent incremente seulement la quantité
       if (isAlreadyPresent) {
-        BASKET[indexModification].quantity =
-          +BASKET[indexModification].quantity + +objectProduct.quantity;
-        localStorage.setItem("cameras", JSON.stringify(BASKET));
+        basket[indexModification].quantity =
+          +basket[indexModification].quantity + +objectProduct.quantity;
+        localStorage.setItem("cameras", JSON.stringify(basket));
         // si non, ajoute le produit au localStorage
       } else {
-        BASKET.push(objectProduct);
-        localStorage.setItem("cameras", JSON.stringify(BASKET));
+        basket.push(objectProduct);
+        localStorage.setItem("cameras", JSON.stringify(basket));
       }
     });
   });
